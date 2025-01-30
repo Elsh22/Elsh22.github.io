@@ -140,3 +140,4 @@ window.MathJax = {
         processHtmlClass: 'tex2jax_process'
     }
 };
+
