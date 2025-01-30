@@ -141,3 +141,254 @@
       margin-top: 8rem;
     }
   }
+
+  /* Base styles and typography */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --background-color: #f8fafc;
+  --text-color: #1e293b;
+  --border-color: #e2e8f0;
+  --card-background: #ffffff;
+  --accent-color: #3b82f6;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Module Container */
+.module-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Headers */
+h1, h2, h3, h4 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+}
+
+/* Section styling */
+.section {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.section:hover {
+  transform: translateY(-2px);
+}
+
+/* Learning Objectives */
+.learning-objectives {
+  background: #eef2ff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.learning-objectives ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.learning-objectives li {
+  padding: 0.5rem 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.learning-objectives li::before {
+  content: '✓';
+  color: var(--accent-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Interactive Elements */
+.interactive-container {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+}
+
+.vector-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.vector-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vector-input input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.vector-input label {
+  font-weight: 500;
+  min-width: 1.5rem;
+}
+
+/* Canvas Container */
+.canvas-container {
+  background: linear-gradient(145deg, #f3f4f6, #ffffff);
+  border-radius: 12px;
+  padding: 1rem;
+  height: 400px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Math Formulas */
+.math-container {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* Buttons */
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Practice Problems */
+.practice-problem {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-left: 4px solid var(--accent-color);
+}
+
+.solution {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  display: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* MathJax Styling */
+.MathJax {
+  font-size: 1.1em !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .module-container {
+      padding: 1rem;
+  }
+
+  h1 {
+      font-size: 2rem;
+  }
+
+  h2 {
+      font-size: 1.75rem;
+  }
+
+  .vector-controls {
+      flex-direction: column;
+  }
+
+  .canvas-container {
+      height: 300px;
+  }
+}
+
+/* Vector Visualization Enhancements */
+.viz-container {
+  position: relative;
+  background: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.viz-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Code and Example Blocks */
+.example-box {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--accent-color);
+}
+
+/* Interactive Elements Hover States */
+.interactive-element:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+/* Navigation Progress */
+.progress-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
