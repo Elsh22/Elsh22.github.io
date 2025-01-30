@@ -1,40 +1,278 @@
-<h2>Introduction and Math Review</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Math Review - EMF Course</title>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: ['base', 'ams', 'noerrors', 'noundefined']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OrbitControls/2.0.0/OrbitControls.js"></script>
 
-<p>This module covers fundamental mathematical concepts required for electromagnetism.</p>
+    <style>
+        .module-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .interactive-container {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .vector-controls {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .vector-input {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .canvas-container {
+            width: 100%;
+            height: 400px;
+            background: #fff;
+            border-radius: 8px;
+        }
+        
+        .example-box {
+            background: #e9ecef;
+            padding: 1rem;
+            border-left: 4px solid #007bff;
+            margin: 1rem 0;
+        }
+        
+        .practice-problem {
+            background: #f1f8ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e8f4f8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="module-container">
+        <h1>Module 1: Mathematical Foundations</h1>
+        
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2>1.1 Introduction to Vector Calculus</h2>
+            <p>Welcome to the first module of our Electromagnetic Fields course. Before diving into electromagnetic theory, we need to establish a strong foundation in vector calculus, which is essential for understanding field theory.</p>
+            
+            <div class="learning-objectives">
+                <h3>Learning Objectives:</h3>
+                <ul>
+                    <li>Understand 3D vectors and their components</li>
+                    <li>Master vector operations (addition, dot product, cross product)</li>
+                    <li>Learn vector calculus operations (gradient, divergence, curl)</li>
+                    <li>Apply vector analysis in different coordinate systems</li>
+                </ul>
+            </div>
+        </section>
 
-<h3>Vector Calculus Review</h3>
-<p>Vectors can be defined in three-dimensional space as:</p>
-$$
-\mathbf{A} = A_x \hat{i} + A_y \hat{j} + A_z \hat{k}
-$$
-<p>Key operations include dot product and cross product:</p>
-$$
-\mathbf{A} \cdot \mathbf{B} = A_x B_x + A_y B_y + A_z B_z
-$$
-$$
-\mathbf{A} \times \mathbf{B} = (A_y B_z - A_z B_y) \hat{i} + (A_z B_x - A_x B_z) \hat{j} + (A_x B_y - A_y B_x) \hat{k}
-$$
+        <!-- Vector Basics Section -->
+        <section class="section">
+            <h2>1.2 Vector Basics and Operations</h2>
+            
+            <h3>Vector Definition</h3>
+            <p>A vector in 3D space can be represented as:</p>
+            $$\vec{A} = A_x\hat{i} + A_y\hat{j} + A_z\hat{k}$$
+            
+            <div class="interactive-container">
+                <h3>Interactive Vector Visualization</h3>
+                <div class="vector-controls">
+                    <div class="vector-input">
+                        <label for="x-component">X:</label>
+                        <input type="number" id="x-component" value="1" step="0.1">
+                    </div>
+                    <div class="vector-input">
+                        <label for="y-component">Y:</label>
+                        <input type="number" id="y-component" value="1" step="0.1">
+                    </div>
+                    <div class="vector-input">
+                        <label for="z-component">Z:</label>
+                        <input type="number" id="z-component" value="1" step="0.1">
+                    </div>
+                    <button onclick="updateVector()">Update Vector</button>
+                </div>
+                <div id="vector-canvas" class="canvas-container"></div>
+            </div>
 
-<h3>3D Vector Visualization</h3>
-<div id="vector-scene"></div>
-<script>
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 500, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, 500);
-    document.getElementById("vector-scene").appendChild(renderer.domElement);
+            <h3>Vector Operations</h3>
+            <div class="example-box">
+                <h4>Dot Product</h4>
+                $$\vec{A} \cdot \vec{B} = A_xB_x + A_yB_y + A_zB_z = |\vec{A}||\vec{B}|\cos\theta$$
+                
+                <h4>Cross Product</h4>
+                $$\vec{A} \times \vec{B} = \begin{vmatrix} 
+                \hat{i} & \hat{j} & \hat{k} \\
+                A_x & A_y & A_z \\
+                B_x & B_y & B_z
+                \end{vmatrix}$$
+            </div>
+        </section>
 
-    // Create Vector Representation
-    const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
-    const points = [ new THREE.Vector3(0, 0, 0), new THREE.Vector3(1, 1, 1) ];
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const line = new THREE.Line(geometry, material);
-    scene.add(line);
+        <!-- Vector Calculus Section -->
+        <section class="section">
+            <h2>1.3 Vector Calculus Operations</h2>
+            
+            <h3>Gradient</h3>
+            <p>The gradient of a scalar field φ is:</p>
+            $$\nabla \phi = \frac{\partial \phi}{\partial x}\hat{i} + \frac{\partial \phi}{\partial y}\hat{j} + \frac{\partial \phi}{\partial z}\hat{k}$$
+            
+            <h3>Divergence</h3>
+            <p>The divergence of a vector field is:</p>
+            $$\nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}$$
+            
+            <h3>Curl</h3>
+            <p>The curl of a vector field is:</p>
+            $$\nabla \times \vec{A} = \begin{vmatrix}
+            \hat{i} & \hat{j} & \hat{k} \\
+            \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+            A_x & A_y & A_z
+            \end{vmatrix}$$
+        </section>
 
-    camera.position.z = 2;
-    function animate() {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-    }
-    animate();
-</script>
+        <!-- Practice Problems -->
+        <section class="section">
+            <h2>1.4 Practice Problems</h2>
+            
+            <div class="practice-problem">
+                <h3>Problem 1: Vector Operations</h3>
+                <p>Given vectors $\vec{A} = 2\hat{i} + 3\hat{j} + \hat{k}$ and $\vec{B} = \hat{i} - 2\hat{j} + 4\hat{k}$, calculate:</p>
+                <ol>
+                    <li>$\vec{A} \cdot \vec{B}$</li>
+                    <li>$\vec{A} \times \vec{B}$</li>
+                </ol>
+                <button onclick="toggleSolution('solution1')">Show/Hide Solution</button>
+                <div id="solution1" class="solution">
+                    <h4>Solution:</h4>
+                    <p>1. Dot Product:</p>
+                    $$\vec{A} \cdot \vec{B} = (2)(1) + (3)(-2) + (1)(4) = 2 - 6 + 4 = 0$$
+                    <p>2. Cross Product:</p>
+                    $$\vec{A} \times \vec{B} = \begin{vmatrix}
+                    \hat{i} & \hat{j} & \hat{k} \\
+                    2 & 3 & 1 \\
+                    1 & -2 & 4
+                    \end{vmatrix} = (3(4) - 1(-2))\hat{i} - (2(4) - 1(1))\hat{j} + (2(-2) - 3(1))\hat{k}$$
+                    $$= (12 + 2)\hat{i} - (8 - 1)\hat{j} + (-4 - 3)\hat{k} = 14\hat{i} - 7\hat{j} - 7\hat{k}$$
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Three.js Scene Setup
+        let scene, camera, renderer, controls;
+        let vectorArrow;
+
+        function initScene() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+            
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(document.querySelector('.canvas-container').offsetWidth, 400);
+            document.getElementById('vector-canvas').appendChild(renderer.domElement);
+            
+            // Add grid and axes
+            const gridHelper = new THREE.GridHelper(10, 10);
+            scene.add(gridHelper);
+            
+            // Add coordinate axes
+            const axesHelper = new THREE.AxesHelper(5);
+            scene.add(axesHelper);
+            
+            // Initial camera position
+            camera.position.set(3, 3, 3);
+            camera.lookAt(0, 0, 0);
+            
+            // Add OrbitControls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            
+            // Create initial vector
+            createVector(1, 1, 1);
+            
+            animate();
+        }
+
+        function createVector(x, y, z) {
+            if (vectorArrow) scene.remove(vectorArrow);
+            
+            const dir = new THREE.Vector3(x, y, z);
+            const origin = new THREE.Vector3(0, 0, 0);
+            const length = dir.length();
+            dir.normalize();
+            
+            const arrowHelper = new THREE.ArrowHelper(dir, origin, length, 0xff0000);
+            scene.add(arrowHelper);
+            vectorArrow = arrowHelper;
+        }
+
+        function updateVector() {
+            const x = parseFloat(document.getElementById('x-component').value);
+            const y = parseFloat(document.getElementById('y-component').value);
+            const z = parseFloat(document.getElementById('z-component').value);
+            createVector(x, y, z);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Initialize 3D scene when page loads
+        window.onload = initScene;
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+
+        function onWindowResize() {
+            const container = document.querySelector('.canvas-container');
+            camera.aspect = container.offsetWidth / 400;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.offsetWidth, 400);
+        }
+    </script>
+</body>
+</html>
