@@ -3,17 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMF Visualization</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.6/htmx.min.js"></script>
+    <title>Electromagnetic Fields & Waves | EMF Course</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    
+    <!-- Three.js and Extensions -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        body { margin: 0; text-align: center; background-color: #222; color: white; }
-        #scene-container { width: 100%; height: 500px; }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OrbitControls/2.0.0/OrbitControls.js"></script>
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: ['base', 'ams', 'noerrors', 'noundefined']
+        },
+        options: {
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+        }
+    };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
+    <!-- Main JavaScript -->
+    <script src="./assets/js/main.js" defer></script>
 </head>
 <body>
-    <h1>Electromagnetic Field Visualization</h1>
-    <button hx-get="scene.html" hx-target="#content" hx-swap="innerHTML">Load 3D Scene</button>
-    <div id="content"></div>
+    <!-- Navigation -->
+<nav class="nav-container">
+    <div class="nav-content">
+        <!-- Logo - this works because it's a full page reload -->
+        <a href="index.html" class="nav-logo">EMF Course</a>
+        
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <!-- Each link needs both href for standard navigation and hx-get for HTMX -->
+            <a href="EMF/module1.html" 
+               class="nav-link" 
+               hx-get="EMF/module1.html" 
+               hx-target="main">Math Review</a>
+            
+            <a href="EMF/module2.html" 
+               class="nav-link" 
+               hx-get="EMF/module2.html" 
+               hx-target="main">Electrostatics</a>
+            
+            <a href="EMF/module3.html" 
+               class="nav-link" 
+               hx-get="EMF/module3.html" 
+               hx-target="main">Electric Fields</a>
+            
+            <a href="EMF/module4.html" 
+               class="nav-link" 
+               hx-get="EMF/module4.html" 
+               hx-target="main">Magnetostatics</a>
+            
+            <a href="EMF/module5.html" 
+               class="nav-link" 
+               hx-get="EMF/module5.html" 
+               hx-target="main">Magnetic Materials</a>
+            
+            <a href="about.html" 
+               class="nav-link" 
+               hx-get="about.html" 
+               hx-target="main">About</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Main Content -->
+    <main id="main" class="main-container">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1>Electromagnetic Fields & Waves</h1>
+                <p class="hero-subtitle">A comprehensive journey through electromagnetic theory with interactive 3D visualizations</p>
+                <div class="hero-actions">
+                    <button class="primary-btn" 
+                            hx-get="EMF/module1.html" 
+                            hx-target="#main-content"
+                            hx-push-url="true">Start Learning</button>
+                    <button class="secondary-btn" 
+                            hx-get="about.html" 
+                            hx-target="#main-content"
+                            hx-push-url="true">About Course</button>
+                </div>
+            </div>
+
+            <!-- Course Overview -->
+            <div class="content-card">
+                <h2>Course Overview</h2>
+                <p class="overview-text">
+                    This course covers the fundamental principles of electromagnetic fields and waves, from basic vector calculus to advanced concepts in electrostatics and magnetism. Each module features interactive 3D visualizations and practical examples to enhance understanding.
+                </p>
+                
+                <!-- Learning Objectives -->
+                <div class="objectives-section">
+                    <h3>Learning Objectives</h3>
+                    <div class="objectives-grid">
+                        <div class="objective-card">
+                            <div class="objective-icon">📐</div>
+                            <h4>Mathematical Foundation</h4>
+                            <p>Master vector calculus and its applications in electromagnetic theory</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon">⚡</div>
+                            <h4>Electric Fields</h4>
+                            <p>Understand electric fields, potential, and their behavior in different materials</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon">🧲</div>
+                            <h4>Magnetic Fields</h4>
+                            <p>Learn about magnetic fields, flux, and their interactions with materials</p>
+                        </div>
+                        <div class="objective-card">
+                            <div class="objective-icon">🔧</div>
+                            <h4>Practical Applications</h4>
+                            <p>Apply theoretical knowledge to real-world electromagnetic problems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module Preview -->
+            <div class="content-card">
+                <h2>Course EMF</h2>
+                <div class="module-grid">
+                    <div class="module-card">
+                        <h3>Module 1: Math Review</h3>
+                        <p>Vector calculus fundamentals and 3D mathematics</p>
+                        <ul class="module-topics">
+                            <li>3D vectors and components</li>
+                            <li>Vector operations</li>
+                            <li>Vector calculus</li>
+                            <li>Coordinate systems</li>
+                        </ul>
+                        <button class="module-btn" 
+                                hx-get="EMF/module1.html" 
+                                hx-target="#main-content"
+                                hx-push-url="true">Start Module</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Module 2: Electrostatics</h3>
+                        <p>Electric fields and Coulomb's Law</p>
+                        <ul class="module-topics">
+                            <li>Electric field concepts</li>
+                            <li>Coulomb's Law</li>
+                            <li>Electric flux</li>
+                            <li>Gauss's Law</li>
+                        </ul>
+                        <button class="module-btn" 
+                                hx-get="EMF/module2.html" 
+                                hx-target="#main-content"
+                                hx-push-url="true">Start Module</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Module 3: Electric Fields in Materials</h3>
+                        <p>Behavior of electric fields in different materials</p>
+                        <ul class="module-topics">
+                            <li>Conductors and dielectrics</li>
+                            <li>Boundary conditions</li>
+                            <li>Capacitance</li>
+                            <li>Energy storage</li>
+                        </ul>
+                        <button class="module-btn" 
+                                hx-get="EMF/module3.html" 
+                                hx-target="#main-content"
+                                hx-push-url="true">Start Module</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Module 4: Magnetostatics</h3>
+                        <p>Magnetic fields and Biot-Savart Law</p>
+                        <ul class="module-topics">
+                            <li>Magnetic field concepts</li>
+                            <li>Biot-Savart Law</li>
+                            <li>Ampère's Law</li>
+                            <li>Maxwell's equations</li>
+                        </ul>
+                        <button class="module-btn" 
+                                hx-get="EMF/module4.html" 
+                                hx-target="#main-content"
+                                hx-push-url="true">Start Module</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Module 5: Magnetic Materials</h3>
+                        <p>Properties and behavior of magnetic materials</p>
+                        <ul class="module-topics">
+                            <li>Magnetization</li>
+                            <li>Magnetic properties</li>
+                            <li>Inductance</li>
+                            <li>Magnetic circuits</li>
+                        </ul>
+                        <button class="module-btn" 
+                                hx-get="EMF/module5.html" 
+                                hx-target="#main-content"
+                                hx-push-url="true">Start Module</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Demo Section -->
+            <div class="content-card">
+                <h2>Interactive Demonstrations</h2>
+                <div class="demo-container">
+                    <div id="demo-visualization" class="viz-container" data-viz="vector-field"></div>
+                    <div class="demo-controls">
+                        <h3>Vector Field Visualization</h3>
+                        <p>Interact with the 3D visualization to explore vector fields. Use your mouse to rotate and zoom.</p>
+                        <button class="demo-btn" onclick="resetVisualization()">Reset View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>EMF Course</h4>
+                <p>A comprehensive electromagnetic fields and waves course with interactive 3D visualizations.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html" 
+                   hx-get="about.html" 
+                   hx-target="#main-content" 
+                   hx-push-url="true">About</a>
+                <a href="EMF/module1.html" 
+                   hx-get="EMF/module1.html" 
+                   hx-target="#main-content" 
+                   hx-push-url="true">Get Started</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Documentation</a>
+                <a href="#">References</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EMF Course. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Navigation State Management Script -->
+    <script>
+        // Debug HTMX requests
+        document.body.addEventListener('htmx:beforeRequest', function(evt) {
+            console.log('Request URL:', evt.detail.requestConfig.path);
+        });
+        
+        document.body.addEventListener('htmx:afterRequest', function(evt) {
+            console.log('Response status:', evt.detail.xhr.status);
+            if (evt.detail.xhr.status !== 200) {
+                console.log('Response text:', evt.detail.xhr.responseText);
+            }
+        });
+    </script>
 </body>
 </html>
